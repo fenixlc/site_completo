@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Produtos</title>
+    <style type="text/css">
+         table.borda {              
+               border: 1; }
+        </style>
+
+<script type="text/javascript">
+   
+   window.onload = function imageOption() {
+
+   
+        //captura a url da página
+        var url = window.location.href; 
+      // alert("URL CAPTURADA: \n\n" + url);
+
+        //tenta localizar o ?
+        var res = url.split('?'); 
+    
+       
+
+        if (res[1] !== undefined) {
+		//tenta localizar os & (pode haver mais de 1)
+            var parametros = res[1].split('&');
+            var image = document.getElementById("imageoption");
+
+            var valorParametro = new Array();
+            captura = parametros[0].split('=');				
+				
+			
+			valorParametro[0] ='imagem/' + captura[1];
+
+            document.getElementById("imageoption").src = valorParametro[0];
+
+            if (captura[1]=='212.jpg'){
+
+               texto = '<b> PRODUTO: 212 <BR>PREÇO R$ 220,00<BR>100ml';
+                texto += '<br>ATRATIVOS: Fragrância amadeirada floral almiscarada';
+                texto += '<br>Perfume extremamente versátil';
+                texto +=  '<br>Atemporal';   
+                 
+
+            }
+            if (captura[1]=='million.jpg'){
+                texto =  '<b>PRODUTO: MILLION <BR>PREÇO R$ 300,00<BR>150ml';
+                texto+='<br>ATRATIVOS Objeto de desejo assim como a barra de ouro';
+                texto+='<br>Frescor adocicado';
+
+            }
+
+            if (captura[1]=='invictus.jpg'){
+                texto =  '<b>PRODUTO: INVICTUS <BR>PREÇO R$ 350,00<BR>180ml';
+                    texto+='<br>ATRATIVOS Concentração:	Eau de Toilette - EDT';
+                    texto+='<br>Familia Olfativa:	Amadeirado';
+
+            }
+
+            if (captura[1]=='malbec.jpg'){
+
+                texto = '<b>PRODUTO: MALBEC BLACK <BR>PREÇO R$ 170,00<BR>200ml'; 
+                    texto+='<br>ATRATIVOS Feito de notas frescas e amadeiradas com base de Ameixa, Carvalho e Baunilha';
+                    texto+='<br>Familia Olfativa:	Amadeirado';
+            }
+
+            if (captura[1]=='ferrari.jpg'){
+                texto =  '<b>PRODUTO: FERRARI BLACK <BR>PREÇO R$ 250,00<BR>120ml';
+                    texto+='<br>ATRATIVOS  O Ferrari Black Eau de Toilette é composto de aromas cítricos como limão siciliano';
+                    texto+='<br>Familia Olfativa:	limão taiti, bergamota e notas fortes de canela, ameixa cristais de almíscar preto';  
+                    
+                    
+                   
+
+            }
+
+
+
+
+            document.getElementById("lbltexto").innerHTML = texto;
+           
+    }
+            
+}
+    </script>
+   
+</head>
+<h3><P ALIGN=center>Produto Selecionado</P></h3>
+<body>
+   
+</BR>
+<Table border="2" align="center">       
+    
+    <tr>        
+        <td align="center"> <img  id="imageoption" onload="imageoption()" alt="Imagem"  width="200px" height="200px"/></td>       
+         
+                 
+    </tr>
+    <tr>
+        <td><label id="lbltexto"></label></td>
+       
+    </tr>
+   
+   
+    </table>
+</br>
+
+    
+</body>
+</html>

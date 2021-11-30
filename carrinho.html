@@ -1,0 +1,133 @@
+<meta charset="UTF-8">
+
+<div id="itens"> </div>
+<div>Total: <span id="total"></span> </div>
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
+<script>
+ var total = 0; 
+ var i = 0;     
+ var valor = 0; 
+ 
+ for(i=1; i<=99; i++) 
+ {
+	 var prod = localStorage.getItem("produto" + i + ""); 
+	 if(prod != null) 
+	 {	
+		 
+		 document.getElementById("itens").innerHTML += localStorage.getItem("qtd" + i) + " x ";
+		 document.getElementById("itens").innerHTML += localStorage.getItem("produto" + i);
+		 document.getElementById("itens").innerHTML += " ";
+		 document.getElementById("itens").innerHTML += "R$: " + localStorage.getItem("valor" + i) + "<hr>";
+		 
+		 
+		 valor = parseFloat(localStorage.getItem("valor" + i)); // valor convertido com o parseFloat()
+		 total = (total + valor); 
+	 }
+ } 
+ 
+ document.getElementById("total").innerHTML = total.toFixed(2); 
+
+ 
+
+ function valida_form (){
+    if(document.getElementById("nome").value == ""){
+        alert('Por favor, preencha o campo nome');
+        document.getElementById("nome").focus();
+        return false
+    }
+
+    if(document.getElementById("cpf").value == ""){
+        alert('Por favor, preencha o campo cpf');
+        document.getElementById("cpf").focus();
+        return false
+    }
+
+    if(document.getElementById("numerocartao").value == ""){
+        alert('Por favor, preencha o campo número do cartão');
+        document.getElementById("numerocartao").focus();
+        return false
+    }
+
+    if(document.getElementById("codigocartao").value == ""){
+        alert('Por favor, preencha o campo código do cartão');
+        document.getElementById("codigocartao").focus();
+        return false
+    }
+
+    if(document.getElementById("datavalidade").value == ""){
+        alert('Por favor, preencha o campo data de validade do cartão');
+        document.getElementById("datavalidade").focus();
+        return false
+    }
+
+    window.print();
+}
+
+
+
+</script>
+</head>
+
+<button type="button" onclick=" localStorage.clear(); location.reload();"> Limpar carrinho </button>
+<br>
+<form>
+    <table>
+        <tr>
+            <td colspan="2" align="center" bgcolor="ORANGE">DADOS CARTÃO                            
+
+            </td>       
+    
+        </tr> 
+    </br>        
+    
+        <tr>
+            <td>Nome impresso no Cartão:*</td>           
+            <td><input type="text" name="nome" id="nome"></td>
+        </tr>   
+        <tr>
+            <td>CPF do Titular:*</td>            
+            <td><input type="text" name="cpf" id="cpf" onkeypress="$(this).mask('000.000.000-00');"></td>
+        </tr>   
+
+        <tr>
+            <td>Número do Cartão:*</td>            
+            <td><input type="text" name="numerocartao" id="numerocartao" ></td>
+        </tr> 
+        
+        <tr>
+            <td>Código de Segurança:*</td>           
+            <td><input type="text" name="codigocartao" id="codigocartao" ></td>
+        </tr>
+        
+        <tr>
+            <td>Data Validade:*</td>            
+            <td><input type="text" name="datavalidade"  id="datavalidade"  onkeypress="$(this).mask('00/00/0000')"></td>
+        </tr>      
+    </br>    
+    </table>
+
+	<label for="filial">Local de Retirada:*</label>
+        <br>
+		<select id="filial">
+		<option value="BARRA">RUA OLEGÁRIO MACIEL, 500 - BARRA DA TIJUCA - RJ</option>
+		<option value="BOTAFOGO">RUA MARQUES DE OLINDA, 84 - BOTAFOGO - RJ</option>
+		<option value="RECREIO DOS BANDEIRANTES">RUA GLAUCIO GIL, 100 - RECREIO - RJ</option>		
+		</select>
+
+    <Table border="2" align="center">
+
+        <tr>
+    
+            <td> <input style="color: #FFFFFF; background-color: hsl(29, 100%, 40%)" type="button" value="Finalizar compras" onClick="valida_form()" ></td>
+           
+        </tr>
+
+    </Table>
+    </form>
